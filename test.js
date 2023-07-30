@@ -6,20 +6,23 @@ function handleClick() {
   console.log("Clicked the 'Add to cart' button and the input field is: ", inputValue);
 }
 
-// Attach the click event listener to the "Add to cart" button
-document.getElementById("add-button").addEventListener("click", handleClick);
+let startTest = false;
 
 // Test code
-function test() {
-  const mockInputValue = 'Test Success';
-  document.getElementById("input-field").value = mockInputValue;
+if (startTest) {
+  // Attach the click event listener to the "Add to cart" button
+  document.getElementById("add-button").addEventListener("click", handleClick);
 
-  handleClick(); // Manually call the click event handler
+  function test() {
+    const mockInputValue = 'Test Success';
+    document.getElementById("input-field").value = mockInputValue;
 
-  // Check the console for the correct logged message
+    handleClick(); // Manually call the click event handler
 
-  // Reset the input field value to an empty string after the test is completed
-  document.getElementById("input-field").value = '';
+    // Check the console for the correct logged message
+
+    // Reset the input field value to an empty string after the test is completed
+    document.getElementById("input-field").value = '';
+  }
+  test(); // Run the test
 }
-
-test(); // Run the test
