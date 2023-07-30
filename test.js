@@ -16,7 +16,7 @@ function test() {
 
   handleClick(); // Manually call the click event handler
 
-  // Check the console for the logged message
+  // Check the console for the correct logged message
 
   // Reset the input field value to an empty string after the test is completed
   document.getElementById("input-field").value = '';
