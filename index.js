@@ -1,7 +1,7 @@
 // index.js
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
     databaseURL: "https://playground-24e1c-default-rtdb.firebaseio.com/"
@@ -24,11 +24,23 @@ addButtonEl.addEventListener("click", function() {
     push(shoppingListinDB, inputValue)
 
     clearInputFieldEl()
+})
 
-    appendItemToShoppingListEl(inputValue)
+onValue(shoppingListinDB, function(snapshot) {
+    let itemsAray = Object.values(snapshot.val())
+
+    clearShoppingListEl()
+    
+    for (let i = 0; i < itemsAray.length; i++) {
+        appendItemToShoppingListEl(itemsAray[i])
+    }
 })
 
 // Helper functions.
+function clearShoppingListEl() {
+    shoppingListEl.innerHTML = ""
+}
+
 function clearInputFieldEl() {
     inputFieldEl.value = ""
 }
