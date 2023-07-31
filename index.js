@@ -12,9 +12,10 @@ const app = initializeApp(appSettings)
 const database = getDatabase(app)
 const shoppingListinDB = ref(database, "shoppingList")
 
-// When you click the 'Add to cart' button, whatever is written should be console logged.
+// When you click the 'Add to cart' button.
 const inputFieldEl = document.getElementById("input-field")
 const addButtonEl = document.getElementById("add-button")
+const shoppingListEl = document.getElementById("shopping-list")
 
 addButtonEl.addEventListener("click", function() {
     // Will use inputValue later.
@@ -22,5 +23,9 @@ addButtonEl.addEventListener("click", function() {
 
     push(shoppingListinDB, inputValue)
 
-    console.log("Clicked the 'Add to cart' button and the input field is: ", inputValue)
+    // Append a new <li> with text content inputValue to the 'shopping-list' <ul>
+    shoppingListEl.innerHTML += `<li>${inputValue}</li>`
+
+    // Clear inputFieldEl.value after it's added to the 'shopping-list'.
+    inputFieldEl.value = ""
 })
